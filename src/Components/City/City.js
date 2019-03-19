@@ -64,7 +64,7 @@ class City extends Component {
         return (
             <div className="citycontainer">
                 <div className="widget" style={{margin: "10px", width: "300px"}}>
-                    <li className="list-group-item">Weather in <b>{this.state.City}°C</b></li>
+                    <li className="list-group-item bg-info">Weather in <b>{this.state.City}</b></li>
                     <li className="list-group-item">Temperature: <b>{this.state.Temperature}°C</b></li>
                     <li className="list-group-item">Humidity: <b>{this.state.Humidity}</b></li>
                     <li className="list-group-item">Wind: <b>{this.state.Wind} m/s Øst</b></li>
@@ -72,8 +72,9 @@ class City extends Component {
                     <form className="form-inline">
                         <div className="form-group">
                         <input type="text" className="form-control" id="city" placeholder="City" onChange={(event) => this.inputChanged(event)}/>
+                        <button type="submit" className="btn btn-info" onClick={this.buttonClicked}>Search</button>
                         </div>
-                        <button type="submit" className="btn btn-default" onClick={this.buttonClicked}>Search</button>
+                        
                     </form>
                 </li>
                 </div>
