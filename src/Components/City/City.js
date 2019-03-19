@@ -9,15 +9,15 @@ class City extends Component {
         Temperature: null,
         Humidity: null, 
         Wind: null,
+        City: null,
         Startcity: "Copenhagen",
-        SearchCity: "Copenhagen"
+        SearchCity: ""
     }
 
     
 
     componentDidMount() {
-
-        this.getCityWeatherInfoInitial();
+        this.getWeaherInformation("copenhagen");
 
     }
 
@@ -25,20 +25,24 @@ class City extends Component {
         event.preventDefault();
 
         this.setState({
-            SearchCity: event.target.value
+            SearchCity: event.target.value,
         })
     }
 
     buttonClicked = (event) => {
         event.preventDefault();
-        
-        axios.get("http://api.openweathermap.org/data/2.5/weather?q="+this.state.SearchCity+"&appid=166d00e26d3ff2c6149e89feccc5c59a"    )
+        this.getWeaherInformation(this.state.SearchCity);
+    }
+
+    getWeaherInformation = (city) => {
+        axios.get("http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=166d00e26d3ff2c6149e89feccc5c59a"    )
         .then(res => {
 
                 this.setState({
                     Temperature: res.data.main.temp,
                     Humidity: res.data.main.humidity,
-                    Wind: res.data.wind.speed
+                    Wind: res.data.wind.speed,
+                    City: city
                 })
                 
             console.log(res)
@@ -51,28 +55,8 @@ class City extends Component {
                 Temperature: "",
                 Humidity: "",
                 Wind: "",
-                SearchCity: "By kunne ikke findes"
+                City: "By kunne ikke findes"
             })
-        })
-    }
-
-
-
-    getCityWeatherInfoInitial() {
-        axios.get("http://api.openweathermap.org/data/2.5/weather?q=copenhagen&appid=166d00e26d3ff2c6149e89feccc5c59a"    )
-        .then(res => {
-
-                this.setState({
-                    Temperature: res.data.main.temp,
-                    Humidity: res.data.main.humidity,
-                    Wind: res.data.wind.speed
-                })
-                
-            console.log(res)
-
-            console.log(this.state)
-        })
-        .catch(err => {
         })
     }
 
@@ -80,7 +64,7 @@ class City extends Component {
         return (
             <div className="citycontainer">
                 <div className="widget" style={{margin: "10px", width: "300px"}}>
-                    <li className="list-group-item">Weather in <b>{this.state.SearchCity}°C</b></li>
+                    <li className="list-group-item">Weather in <b>{this.state.City}°C</b></li>
                     <li className="list-group-item">Temperature: <b>{this.state.Temperature}°C</b></li>
                     <li className="list-group-item">Humidity: <b>{this.state.Humidity}</b></li>
                     <li className="list-group-item">Wind: <b>{this.state.Wind} m/s Øst</b></li>
