@@ -37,7 +37,6 @@ class City extends Component {
     getWeaherInformation = (city) => {
         axios.get("http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=166d00e26d3ff2c6149e89feccc5c59a"    )
         .then(res => {
-
                 this.setState({
                     Temperature: res.data.main.temp,
                     Humidity: res.data.main.humidity,
@@ -69,14 +68,13 @@ class City extends Component {
                     <li className="list-group-item">Humidity: <b>{this.state.Humidity}</b></li>
                     <li className="list-group-item">Wind: <b>{this.state.Wind} m/s Øst</b></li>
                     <li className="list-group-item">
-                    <form className="form-inline">
-                        <div className="form-group">
-                        <input type="text" className="form-control" id="city" placeholder="City" onChange={(event) => this.inputChanged(event)}/>
-                        <button type="submit" className="btn btn-info" onClick={this.buttonClicked}>Search</button>
-                        </div>
-                        
-                    </form>
-                </li>
+                        <form className="form-inline">
+                            <div className="form-group">
+                                <input type="text" className="form-control" id="city" placeholder="City" onChange={(event) => this.inputChanged(event)}/>
+                                <button type="submit" className="btn btn-info" onClick={this.buttonClicked}>Search</button>
+                            </div>
+                        </form>
+                    </li>
                 </div>
             </div>
 
