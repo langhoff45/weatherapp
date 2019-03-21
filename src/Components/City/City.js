@@ -17,8 +17,31 @@ class City extends Component {
     
 
     componentDidMount() {
-        this.getWeaherInformation("copenhagen");
+        
+        if(this.props.history.location.pathname === "/") {
+            
+            this.props.history.push({
+                pathname: 'container',
+                search: '?city='+this.state.Startcity
+            });
+            
+            this.getWeaherInformation("copenhagen");
+        } else if(this.props.history.location.search.includes(this.state.Startcity) || this.props.history.location.search === '?city=') {
+            this.props.history.push({
+                pathname: 'container',
+                search: '?city='+this.state.Startcity
+            });
+            
+            this.getWeaherInformation("copenhagen");
+        } else {
+            this.props.history.push({
+                pathname: 'container',
+                search: '?city='+this.props.location.search.substring(6)
+            });
 
+            this.getWeaherInformation(decodeURIComponent(this.props.location.search.substring(6)));
+        }
+        
     }
 
     inputChanged = (event) => { 
@@ -35,6 +58,9 @@ class City extends Component {
     }
 
     getWeaherInformation = (city) => {
+
+        console.log(city)
+
         axios.get("http://api.openweathermap.org/data/2.5/weather?q="+city+"&appid=166d00e26d3ff2c6149e89feccc5c59a"    )
         .then(res => {
                 this.setState({
@@ -43,10 +69,6 @@ class City extends Component {
                     Wind: res.data.wind.speed,
                     City: city
                 })
-                
-            console.log(res)
-
-            console.log(this.state)
         })
         .catch(err => {
 
