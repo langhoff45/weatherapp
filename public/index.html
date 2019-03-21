@@ -8,6 +8,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <meta name="theme-color" content="#000000" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -25,8 +26,26 @@
     <title>React App</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root" >
+
+      <div class="citycontainer" style="display:inline-block; text-align:center;">
+        <div class="widget" style="margin: 10px; width: 300px;">
+            <li class="list-group-item bg-info">Weather in <b>Copenhagen</b></li>
+            <li class="list-group-item">Temperature: <b>282.83°C</b></li>
+            <li class="list-group-item">Humidity: <b> 87</b></li>
+            <li class="list-group-item">Wind: <b> 8.7 m/s Øst</b></li>
+            <li class="list-group-item">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="city" placeholder="City"/>
+                        <button type="submit" class="btn btn-info" >Search</button>
+                    </div>
+                </form>
+            </li>
+        </div>
+    </div>
+
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
