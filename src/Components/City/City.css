@@ -1,4 +1,6 @@
 .citycontainer {
     padding: 8px;
+    display:inline-block;
+    text-align:center;
 }
 
