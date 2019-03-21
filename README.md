@@ -1,6 +1,10 @@
-Projektet køres ved at downloade projektet.
+<h1>Installationsguide</h1>
+
+<u>Der er følgende trin til installation og kørsel af programmet:</u>
 
 Installationsguide:
-1: Kør med node.js, npm install kommando.
-2: Kør efterfølegende npm start.
-3: Projektet startes nu på en lokal udvikler server.
+<ul>
+<li>1: Kør med node.js, npm install kommando.</li>
+<li>2: Kør efterfølegende npm start.</li>
+<li>3: Projektet startes nu på en lokal udvikler server.</li>
+</ul>
