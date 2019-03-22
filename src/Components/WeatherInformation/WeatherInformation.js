@@ -1,9 +1,9 @@
 import React , { Component } from 'react';
-import './City.css';
+import './WeatherInformation.css';
 
 import axios from '../../axios';
 
-class City extends Component {
+class WeatherInformation extends Component {
 
     state = {
         Temperature: null,
@@ -11,7 +11,7 @@ class City extends Component {
         Wind: null,
         City: null,
         Startcity: "Copenhagen",
-        SearchCity: "",
+        SearchValue: "",
         callFailed: false
     }
 
@@ -25,19 +25,13 @@ class City extends Component {
     componentDidMount() {
         
         if(this.props.history.location.pathname === "/") {
-            
             this.setUrl(this.state.Startcity);
             this.getWeaherInformation("copenhagen");
-
         } else if(this.props.history.location.search.includes(this.state.Startcity) || this.props.history.location.search === '?city=') {
-            
             this.setUrl(this.state.Startcity);
             this.getWeaherInformation("copenhagen");
-
         } else {
-          
             this.setUrl(this.props.location.search.substring(6));
-
             this.getWeaherInformation(decodeURIComponent(this.props.location.search.substring(6)));
         }
         
@@ -47,13 +41,13 @@ class City extends Component {
         event.preventDefault();
 
         this.setState({
-            SearchCity: event.target.value,
+            SearchValue: event.target.value,
         })
     }
 
     buttonClicked = (event) => {
         event.preventDefault();
-        this.getWeaherInformation(this.state.SearchCity);
+        this.getWeaherInformation(this.state.SearchValue);
     }
 
     getWeaherInformation = (city) => {
@@ -66,7 +60,7 @@ class City extends Component {
                 Humidity: res.data.main.humidity,
                 Wind: res.data.wind.speed,
                 City: city,
-                SearchCity: city,
+                SearchValue: city,
                 callFailed: false
             })
 
@@ -120,4 +114,4 @@ class City extends Component {
     }
 }
 
-export default City;
+export default WeatherInformation;
